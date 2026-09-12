@@ -24,6 +24,8 @@ skills/
     ├── markdown-log.md
     ├── mermaid-maker.md
     └── svg-maker.md
+adapters/
+└── capability-adapter.md
 ```
 
 `teach` and `visualize` are the reusable policies. The files in `subskills/` describe optional roles and capabilities. A host may implement those capabilities with native tools, agents, scripts, or plain conversation.

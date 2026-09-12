@@ -11,7 +11,7 @@ Teach for understanding, not recital. The target is a connected mental model: a 
 
 Use the language of capabilities rather than assuming a particular runtime. The contracts and fallbacks live in [`../subskills/capability-contract.md`](../subskills/capability-contract.md).
 
-- Use **goal discovery** when the desired outcome, depth, or use case is unclear. Read [`../subskills/goal-discovery.md`](../subskills/goal-discovery.md) when the request is broad.
+- Use **goal discovery** when the desired outcome, depth, or use case is unclear. Read [`../subskills/goal-discovery.md`](../subskills/goal-discovery.md) when the request is broad; it points to the open-question contract when a separate question capability is available.
 - Use a **graded check** when you need to measure current understanding or confirm a node. Read [`../subskills/quiz.md`](../subskills/quiz.md) before constructing one.
 - Use **research** when a claim is time-sensitive, high-stakes, niche, numerical, or uncertain. Read [`../subskills/researcher.md`](../subskills/researcher.md) for the verification protocol.
 - Use **Markdown output** for durable notes or a lesson log. Read [`../subskills/markdown-log.md`](../subskills/markdown-log.md) when persistence is requested.
