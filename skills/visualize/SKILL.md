@@ -1,78 +1,70 @@
 ---
 name: visualize
-description: "Add a correct, minimal visual to a lesson — a diagram or geometric picture — that renders inline in the Obsidian log. Use when an idea is genuinely clearer as a picture: a dependency graph, system/flow, sequence, state machine, tree, comparison, or a spatial/geometric thing (coordinate geometry, number line, vectors, a plot, a physical layout). Outsources authoring+rendering to a maker subagent that verifies the image by looking at it, then you embed the returned file."
+description: Add a correct, minimal visual when a lesson is clearer as a diagram, spatial picture, graph, sequence, state machine, comparison, or other representation of structure.
 ---
 
 # Visualize
 
-A picture earns its place only when it shows something words can't — shape, structure, direction, relationship, geometry. This skill produces ONE such picture, guarantees it is **correct** (the maker renders it and looks at it before returning), and drops it into the lesson so it renders inline in the Obsidian `md-log` file.
+Use a picture to expose structure that prose would make harder to see. A visual earns its place when it shows shape, direction, containment, sequence, dependency, or geometry; it is not decoration and it should not merely repeat a sentence.
 
-You are the **creative director**. You decide the exact idea and distill it to its fewest carrying elements. A **maker subagent** does the authoring, rendering, visual verification, and saving, then returns a filename. You embed that filename in your reply.
+Use the portable capability and fallback rules in [`../subskills/capability-contract.md`](../subskills/capability-contract.md). Host-specific renderers and file embeds belong in an adapter, not in this skill.
 
-## When to visualize (and when not to)
+## Decide whether a visual is warranted
 
-This teaching system builds a **dependency graph in the learner's head** — axioms at the root, derived facts hanging off them. A visual is powerful exactly when it makes that structure (or a geometry) visible. Reach for one when:
+Ask:
 
-- The idea is a **structure or relationship**: dependencies, a system with parts and arrows, a flow/pipeline, a sequence of exchanges, a state machine, a tree/hierarchy, a comparison, a containment (what's inside vs outside).
-- The idea is **spatial or geometric**: coordinate geometry, a number line, vectors, a function's shape, a physical arrangement.
+- Is the central idea a relationship, system, flow, hierarchy, sequence, state change, comparison, or spatial arrangement?
+- Would the learner understand the dependency or geometry faster from a picture?
+- Can one small visual carry the idea without a dense legend?
 
-Do NOT visualize when prose or a single equation already carries it. A decorative diagram that just restates the sentence next to it adds noise and a chance to be wrong. When in doubt, don't — a missing visual is cheaper than a false one.
+If the answer is no, keep the explanation in prose, equations, or a small table. A missing visual is cheaper than a false or distracting one.
 
-## Choose the maker
+## Choose a representation
 
-Two makers, discovered from `.pi/agents/`:
+Select the simplest representation that preserves the relevant structure:
 
-- **`mermaid-maker`** — structural/relational visuals: dependency graphs, flowcharts, sequence/state/ER/class diagrams, trees, mindmaps, timelines. This is the default and fits the dependency-graph pedagogy directly.
-- **`svg-maker`** — spatial/geometric visuals Mermaid can't lay out: exact coordinates, geometry figures, number lines, vectors, plots, custom shapes.
+- **Nodes and relationships:** Mermaid, graph syntax, a flowchart, a dependency map, or a plain-text graph. Use [`../subskills/mermaid-maker.md`](../subskills/mermaid-maker.md) when a dedicated author is available.
+- **Positions and shapes:** SVG, a plotted image, coordinate geometry, a number line, or another precise drawing. Use [`../subskills/svg-maker.md`](../subskills/svg-maker.md) for exact placement.
+- **Small, simple comparisons:** Markdown table, aligned text, or a compact annotated equation.
+- **No renderer available:** provide the source in a fenced block plus a concise description and alt text. State that it has not been pixel-verified.
 
-Rule of thumb: if it's *nodes-and-edges / relationships*, use mermaid-maker. If it's *positions-and-shapes / geometry*, use svg-maker.
+Do not choose a renderer because it is familiar. Choose it because its representation matches the claim.
 
-## Brief the maker well: one idea, fewest elements
+## Brief the author
 
-The most common failure is **cramming** — every extra label makes the picture harder to read AND harder to lay out correctly. Before briefing, prune to the fewest elements that carry the idea, and for each ask: *"if I delete this, is the idea still clear?"* If yes, delete it.
+Before authoring, reduce the idea to one sentence and the fewest carrying elements. Give the author:
 
-Give the maker the concept AND the concrete elements you want — not a vague topic, and not a long checklist.
+1. The exact concept the visual must make visible.
+2. The elements or nodes that must appear.
+3. The relationships, directions, coordinates, or ordering that must be true.
+4. The elements to omit because they add no explanatory value.
+5. Readability constraints: labels, scale, contrast, and intended display size.
 
-- BAD: "make a diagram about how TCP works"
-- GOOD: "graph TD: a node 'packet' at the top; arrows down to 'ordering' and 'retransmit on loss'; both arrows down into 'reliable stream'. No title. Show that reliability is built FROM packets, not alongside them."
+If removing an element leaves the idea unchanged, remove it. A brief with more than roughly seven meaningful elements deserves another pruning pass.
 
-Keep the idea intact but trust the maker to compose; if your brief lists more than ~5–7 elements, cut it first.
+## Author, render, inspect
 
-## Invoke
+The author may be the main agent, a delegated role, or a host tool. The loop is the same:
 
-Dispatch the maker with the `subagent` tool:
+1. Write the complete source or artifact.
+2. Render it using an available renderer.
+3. Inspect the rendered result, not only the source or a successful exit status.
+4. Check semantic truth: arrows, labels, geometry, ordering, and containment say exactly what the brief says.
+5. Check presentation: nothing overlaps, clips, crowds, or becomes unreadable at the intended size.
+6. Simplify or edit, then render again until the result is correct and clean.
 
-```
-subagent(agent="mermaid-maker", task="<your minimal, concrete brief>")
-```
-```
-subagent(agent="svg-maker", task="<your minimal, concrete brief>")
-```
+Only call a visual verified when this loop has happened. If it cannot be rendered or inspected, label it as unverified and use a conservative source representation instead.
 
-The maker owns its own purpose-built tools (`write_*`/`edit_*`/`render_*`) — it authors the source, renders it to a PNG, **looks at the PNG and iterates until it is correct and clean**, publishes it into the vault with a unique filename, and returns:
+## Embed the result
 
-```
-RESULT:
-filename: viz-<slug>-<timestamp>.png
-path: <cwd>/viz/viz-<slug>-<timestamp>.png
-```
+Prefer portable Markdown:
 
-If it returns `RESULT: NONE`, it couldn't make a correct picture of the brief — simplify or rethink, or decide the visual isn't worth it. Never hand-author or fake a diagram yourself; correctness depends on the maker's render-and-inspect loop.
-
-## Embed it in the lesson
-
-Put the embed directly in your teaching reply, using Obsidian's wikilink embed with the returned **filename** (not the full path) and a display width:
-
-```
-![[viz-<slug>-<timestamp>.png|500]]
+```markdown
+![Short description of the visual](path/to/verified-image.png)
 ```
 
-That's all. The `md-log` extension mirrors your reply text verbatim into the linked `.md`, and Obsidian resolves the embed by filename anywhere in the vault (the maker saves into the project's `viz` folder, which is inside the vault) — so it renders inline in the lesson automatically. Width `|500` is a good default; use larger for dense diagrams. Introduce the visual in a sentence, then let it carry the idea — don't narrate every element back in prose.
+Use a host-specific embed only in an adapter layer. Keep the lesson itself independent of vault names, special link syntax, or a particular save directory. Introduce the visual with one sentence and let it carry the relationship; do not narrate every label redundantly.
 
-## Why this is reliable
+## Completion criteria
 
-- The maker never returns a picture it hasn't **looked at**, so "renders fine but says something false" is caught before it reaches the learner.
-- PNG embed means **what the maker verified is pixel-identical to what the learner sees** — no re-render drift.
-- Unique filenames keep Obsidian's by-filename embed resolution unambiguous.
-
-> The makers render through the project's `visual-tools` extension (Mermaid via a bundled `@mermaid-js/mermaid-cli` + installed Chrome; SVG via `rsvg-convert`, fallback ImageMagick). You don't render anything yourself — you only brief the maker and embed the filename it returns.
+A visual is complete when it has one clear purpose, contains no unnecessary element, represents the intended relationships or geometry truthfully, is readable at its display size, and is either rendered and inspected or explicitly marked unverified.

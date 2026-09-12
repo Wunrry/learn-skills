@@ -1,39 +1,47 @@
-# learn
+# Learning Skills
 
-[![video](assets/thumbnail.png)](https://www.youtube.com/watch?v=kzcI5F4tGiU)
+A runtime-neutral learning system for agents that should help people build understanding rather than collect disconnected facts.
 
-My AI learning system from this video: [How I Use AI to Learn Things](https://www.youtube.com/watch?v=kzcI5F4tGiU).
+The repository keeps two primary skills:
 
-This is a personal system I built for myself, shared as-is. Built as a pi configuration: the teaching philosophy encoded in a skill, a few small extensions, and agent definitions.
+- [`teach`](./skills/teach/SKILL.md) turns a learning request into a calibrated, motivated lesson.
+- [`visualize`](./skills/visualize/SKILL.md) adds a visual only when structure, direction, or geometry is clearer as a picture.
 
-## What's in it
+The original system was built for a specific agent runtime. This repository keeps its teaching method while replacing runtime-specific tools with capability contracts and Markdown-compatible fallbacks.
 
-- `skills/teach/` — the philosophy and the process
-- `skills/visualize/` — adds a correct, minimal diagram to a lesson when an idea is clearer as a picture
-- `extensions/ask-user-question/` — the agent asks you questions through a UI popup
-- `extensions/quiz/` — graded questions with instant feedback (✓/✗, correct answer, explanation)
-- `extensions/md-log/` — link a markdown file to the session
-- `extensions/visual-tools/` — tools for visualization subagents
-- `agents/` — `researcher`, `svg-maker`, `mermaid-maker`: the subagents the system delegates to
+## Repository shape
 
-## Install
-
-This repo **is** a `.pi` directory. From your learning project's root:
-
-```bash
-git clone https://github.com/amosblomqvist/learn .pi
+```text
+skills/
+├── teach/SKILL.md
+├── visualize/SKILL.md
+└── subskills/
+    ├── capability-contract.md
+    ├── goal-discovery.md
+    ├── quiz.md
+    ├── researcher.md
+    ├── ask-user-question.md
+    ├── markdown-log.md
+    ├── mermaid-maker.md
+    └── svg-maker.md
 ```
 
-Then open pi in that directory. (Or copy the pieces you want into your existing project config.)
+`teach` and `visualize` are the reusable policies. The files in `subskills/` describe optional roles and capabilities. A host may implement those capabilities with native tools, agents, scripts, or plain conversation.
 
-## Requirements
+## Using the skills
 
-- [pi](https://github.com/earendil-works/pi)
-- A subagent implementation, so the system can spawn the researcher and the visual makers. Recommended: [pi-interactive-subagents](https://github.com/amosblomqvist/pi-interactive-subagents) (tmux only). With it, everything works out of the box. Any other implementation works too, but expect to adapt the agent definitions, e.g. `agents/researcher.md` lists `safe_bash` in its tools, which is specific to that extension.
-- `ask-user-question` — use the copy bundled here. If your setup already has an `ask-user-question` extension, use **this** one in its place. Popups from different extensions serialize through a shared UI lock, which only works when it's the same implementation.
+Give the host the relevant `SKILL.md` as its active instruction. A host that supports skill discovery can expose both skills by their frontmatter names. A simpler host can load `teach` directly and follow its links when a branch requires research, quizzes, or visuals.
 
-## Notes
+There are no required runtime dependencies. The minimum useful implementation is a conversation that can ask questions, wait for answers, and write ordinary Markdown. Rendering, web research, delegated roles, and persistent logs are optional capabilities.
 
-You can run the system without subagents. The main session does the teaching. You just lose the researcher (truth verification) and the generated visuals.
+## Design rules
 
-The teaching skill is written for one learner (me). Edit the skill to fit how you learn best.
+1. Keep pedagogy independent from its transport, UI, renderer, and storage.
+2. Treat a capability as a contract with a fallback, not as a named tool.
+3. Preserve the dependency graph: foundations, motivated derivations, and checks stay connected.
+4. Prefer a correct plain-text or source-format visual over an unverified image.
+5. Keep the learner's goal, current level, and requested depth visible throughout the session.
+
+## Provenance
+
+The method was extracted from the Pi-oriented `learn` project. Pi extensions and Obsidian-specific behavior remain in that project; this repository is the portable instructional layer.
