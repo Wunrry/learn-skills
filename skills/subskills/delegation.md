@@ -2,6 +2,14 @@
 
 Use delegation to keep the teaching agent focused on the learner. The main agent remains the **orchestrator**: it owns the goal, level calibration, dependency plan, explanation, interaction, and final decision. A delegated child owns one bounded production task and never takes over the lesson.
 
+## Role registry
+
+The role briefs below define each child's production method. This file owns when and how to invoke them; the main skills do not route to the role files directly.
+
+- Research: [`researcher.md`](./researcher.md)
+- Relationship diagrams: [`mermaid-maker.md`](./mermaid-maker.md)
+- Spatial diagrams: [`svg-maker.md`](./svg-maker.md)
+
 ## Role boundary
 
 | Role | Child owns | Main agent owns |

@@ -13,7 +13,7 @@ Use the language of capabilities rather than assuming a particular runtime. The 
 
 - Use **goal discovery** when the desired outcome, depth, or use case is unclear. Read [`../subskills/goal-discovery.md`](../subskills/goal-discovery.md) when the request is broad; it points to the open-question contract when a separate question capability is available.
 - Use a **graded check** when you need to measure current understanding or confirm a node. Read [`../subskills/quiz.md`](../subskills/quiz.md) before constructing one.
-- Use **research** when a claim is time-sensitive, high-stakes, niche, numerical, or uncertain. Read [`../subskills/researcher.md`](../subskills/researcher.md) for the verification protocol.
+- Use **research** when a claim is time-sensitive, high-stakes, niche, numerical, or uncertain. The delegation protocol routes this work to the researcher role when one is available.
 - Use **delegation** when research or visual production would pull the teaching thread away from the learner. Read [`../subskills/delegation.md`](../subskills/delegation.md) before dispatching a child agent.
 - Use **Markdown output** for durable notes or a lesson log. Read [`../subskills/markdown-log.md`](../subskills/markdown-log.md) when persistence is requested.
 
@@ -72,7 +72,7 @@ Before teaching a multi-step lesson, reason about the dependency structure.
 - Decide where Socratic effort is useful and where exposition is kinder.
 - Check facts whose correctness depends on current, niche, or external information.
 
-For a substantial or multi-step lesson, dispatch `researcher` before committing to the final dependency map. Give it the topic, learner context, scope, and the teaching decision the research must support. Wait for and validate its return packet, then use the findings to choose roots and the discovery path. For a short, stable explanation, explicitly record the decision to skip delegation.
+For a substantial or multi-step lesson, dispatch the research child before committing to the final dependency map. Give it the topic, learner context, scope, and the teaching decision the research must support. Wait for and validate its return packet, then use the findings to choose roots and the discovery path. For a short, stable explanation, explicitly record the decision to skip delegation.
 
 Present the plan before the lesson. Include a short prose approach and a compact dependency map. The map may be Mermaid, another diagram syntax, ASCII, a table, or plain bullets; use the representation the host can actually render. Keep it a map, not a transcript.
 
@@ -93,7 +93,7 @@ Do not front-load all foundations and then stop checking. A new foundation intro
 
 Verify before asserting claims when they are high-stakes, time-sensitive, niche, numerical, or outside confident knowledge. Prefer primary sources and record the relevant date or scope. If verification is unavailable, label uncertainty and narrow the claim instead of presenting a guess as a foundation.
 
-When verification requires research, dispatch the researcher rather than switching the main teaching thread into an unbounded search. Inspect the child's evidence and caveats before using its result. A source list without a clear supported claim is not a completed research result.
+When verification requires research, dispatch the research child rather than switching the main teaching thread into an unbounded search. Inspect the child's evidence and caveats before using its result. A source list without a clear supported claim is not a completed research result.
 
 If research changes the planned explanation, say what changed. Do not silently preserve a convenient but incorrect dependency graph.
 

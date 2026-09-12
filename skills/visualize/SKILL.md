@@ -25,8 +25,8 @@ If the answer is no, keep the explanation in prose, equations, or a small table.
 
 Select the simplest representation that preserves the relevant structure, then dispatch one suitable maker when the host supports delegated roles:
 
-- **Nodes and relationships:** Mermaid, graph syntax, a flowchart, a dependency map, or a plain-text graph. Use [`../subskills/mermaid-maker.md`](../subskills/mermaid-maker.md) when a dedicated author is available.
-- **Positions and shapes:** SVG, a plotted image, coordinate geometry, a number line, or another precise drawing. Use [`../subskills/svg-maker.md`](../subskills/svg-maker.md) for exact placement.
+- **Nodes and relationships:** Mermaid, graph syntax, a flowchart, a dependency map, or a plain-text graph. The delegation protocol routes this work to a relationship-diagram maker when one is available.
+- **Positions and shapes:** SVG, a plotted image, coordinate geometry, a number line, or another precise drawing. The delegation protocol routes this work to a spatial-diagram maker when one is available.
 - **Small, simple comparisons:** Markdown table, aligned text, or a compact annotated equation.
 - **No renderer available:** provide the source in a fenced block plus a concise description and alt text. State that it has not been pixel-verified.
 
