@@ -17,6 +17,7 @@ skills/
 ├── visualize/SKILL.md
 └── subskills/
     ├── capability-contract.md
+    ├── delegation.md
     ├── goal-discovery.md
     ├── quiz.md
     ├── researcher.md
@@ -43,7 +44,8 @@ There are no required runtime dependencies. The minimum useful implementation is
 3. Preserve the dependency graph: foundations, motivated derivations, and checks stay connected.
 4. Prefer a correct plain-text or source-format visual over an unverified image.
 5. Keep the learner's goal, current level, and requested depth visible throughout the session.
+6. Keep the main agent learner-facing; delegate research and visual production through bounded, verifiable return packets.
 
 ## Provenance
 
-The method was extracted from the Pi-oriented `learn` project. Pi extensions and Obsidian-specific behavior remain in that project; this repository is the portable instructional layer.
+The method was extracted from the Pi-oriented [learn](https://github.com/amosblomqvist/learn) project. Pi extensions and Obsidian-specific behavior remain in that project; this repository is the portable instructional layer.

@@ -12,6 +12,8 @@ The main skills name behaviors, not products or tool APIs. A host can satisfy a 
 
 **Delegation** hands a bounded role to another agent or process, with a brief, input contract, and completion criterion.
 
+Read [`delegation.md`](./delegation.md) for the main-agent/child-agent boundary, dispatch timing, and return packet.
+
 **Render and inspect** turns a visual source into something visible and checks both its semantics and its presentation.
 
 **Persist** writes a durable record in ordinary Markdown while preserving order, code fences, equations, links, and media references.

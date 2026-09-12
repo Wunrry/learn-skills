@@ -9,6 +9,8 @@ Use a picture to expose structure that prose would make harder to see. A visual 
 
 Use the portable capability and fallback rules in [`../subskills/capability-contract.md`](../subskills/capability-contract.md). Host-specific renderers and file embeds belong in an adapter, not in this skill.
 
+The main agent decides what the learner needs to see. When a maker role is available, dispatch the bounded visual-authoring task so the main agent can stay with the teaching plan and learner interaction. Use [`../subskills/delegation.md`](../subskills/delegation.md) for the handoff and return packet.
+
 ## Decide whether a visual is warranted
 
 Ask:
@@ -21,7 +23,7 @@ If the answer is no, keep the explanation in prose, equations, or a small table.
 
 ## Choose a representation
 
-Select the simplest representation that preserves the relevant structure:
+Select the simplest representation that preserves the relevant structure, then dispatch one suitable maker when the host supports delegated roles:
 
 - **Nodes and relationships:** Mermaid, graph syntax, a flowchart, a dependency map, or a plain-text graph. Use [`../subskills/mermaid-maker.md`](../subskills/mermaid-maker.md) when a dedicated author is available.
 - **Positions and shapes:** SVG, a plotted image, coordinate geometry, a number line, or another precise drawing. Use [`../subskills/svg-maker.md`](../subskills/svg-maker.md) for exact placement.
@@ -44,7 +46,7 @@ If removing an element leaves the idea unchanged, remove it. A brief with more t
 
 ## Author, render, inspect
 
-The author may be the main agent, a delegated role, or a host tool. The loop is the same:
+The preferred author is a delegated role. The main agent supplies a bounded brief; the child authors and inspects the artifact; the main agent validates the returned status and integrates the result. If no delegated role exists, the main agent or host tool may perform the loop directly:
 
 1. Write the complete source or artifact.
 2. Render it using an available renderer.
@@ -53,7 +55,7 @@ The author may be the main agent, a delegated role, or a host tool. The loop is 
 5. Check presentation: nothing overlaps, clips, crowds, or becomes unreadable at the intended size.
 6. Simplify or edit, then render again until the result is correct and clean.
 
-Only call a visual verified when this loop has happened. If it cannot be rendered or inspected, label it as unverified and use a conservative source representation instead.
+Only call a visual verified when this loop has happened and the return packet records the inspection. If it cannot be rendered or inspected, label it as unverified and use a conservative source representation instead.
 
 ## Embed the result
 
