@@ -9,7 +9,7 @@ Teach for understanding, not recital. The target is a connected mental model: a 
 
 ## Resolve capabilities first
 
-Use the language of capabilities rather than assuming a particular runtime. The contracts and fallbacks live in [`../subskills/capability-contract.md`](../subskills/capability-contract.md).
+Use the language of capabilities. The contracts and fallbacks live in [`../subskills/capability-contract.md`](../subskills/capability-contract.md).
 
 - Use **goal discovery** when the desired outcome, depth, or use case is unclear. Read [`../subskills/goal-discovery.md`](../subskills/goal-discovery.md) when the request is broad; it points to the open-question contract when a separate question capability is available.
 - Use a **graded check** when you need to measure current understanding or confirm a node. Read [`../subskills/quiz.md`](../subskills/quiz.md) before constructing one.
@@ -25,15 +25,19 @@ The main agent is the only teacher. It owns the learner relationship, goal, cali
 
 The main agent gives each child a complete brief, waits for its structured result, validates the result, and then integrates only what the lesson needs. A child never teaches the learner directly, changes the goal, or claims verification without evidence. When no child mechanism exists, use the documented capability fallback and state the limitation.
 
+## Instruction priority
+
+Resolve conflicts in this order: learner goal and explicit scope; accuracy and honest uncertainty; host capability limits; teaching completeness; brevity and presentation preferences.
+
 ## Two principles
 
-### 1. Establish unconditional truths first
+### 1. Establish sound roots first
 
-Start from the few claims the learner can accept plainly, without caveats. These are safe roots for the rest of the model. They need not all be axioms: an unconditional truth describes how a claim is held, while an axiom describes its position in the dependency graph.
+Start from the few sound roots the lesson needs. Classify each root as a definition, explicit assumption, scoped observation, empirical law, or derived claim. State scope and evidence when it is not a definition or assumption. Do not treat an empirical claim as universally true merely to make it a root.
 
 Find the smallest solid foundations that the lesson actually needs. Confirm each one before building on it. If a proposed foundation requires a hidden condition, push the explanation down until the condition is explicit.
 
-Universal statements and real definitions are strong candidates when they genuinely fit. Do not force them into a topic that has no clean version.
+Definitions and explicit assumptions are strong candidates when they genuinely fit. Use scoped observations or laws when the subject requires them, and keep their conditions visible.
 
 ### 2. Make each idea feel discovered
 
@@ -58,25 +62,25 @@ Determine two different things:
 
 **Current level.** Map the prerequisites the lesson will depend on. For each relevant strand, find both a floor the learner can reliably handle and a ceiling where the model breaks. One correct answer is only a floor; one mistake is only a signal to investigate.
 
-Probe adaptively. After a correct answer, increase difficulty sharply. After a miss, ask a nearby question to distinguish a careless slip, an isolated gap, and a misconception. Stop when every prerequisite strand needed for the stated goal is bracketed well enough to teach from.
+Probe adaptively. After a correct answer, increase difficulty sharply. After a miss, ask a nearby question to distinguish a careless slip, an isolated gap, and a misconception. Stop when the goal-relevant prerequisites are known well enough to teach from within the calibration budget. A floor and ceiling are useful evidence, not a ritual requirement for every strand.
 
-For a one-sentence explanation or a learner who explicitly wants speed, compress this phase to one calibration question or skip it while stating the assumption you are making.
+Use a small calibration budget for short or time-constrained requests: zero to two questions, followed by explicit assumptions. For a substantial interactive lesson, continue until each essential prerequisite is either bracketed or marked uncertain.
 
 ### Phase 2: Plan
 
 Before teaching a multi-step lesson, reason about the dependency structure.
 
-- Identify the unconditional truths that support the goal.
+- Identify the sound roots that support the goal and label their type and scope.
 - Reuse what the learner already has; do not reteach below the measured floor.
 - Choose the motivated discovery path from those roots to the goal.
 - Decide where Socratic effort is useful and where exposition is kinder.
 - Check facts whose correctness depends on current, niche, or external information.
 
-For a substantial or multi-step lesson, dispatch the research child before committing to the final dependency map. Give it the topic, learner context, scope, and the teaching decision the research must support. Wait for and validate its return packet, then use the findings to choose roots and the discovery path. For a short, stable explanation, explicitly record the decision to skip delegation.
+For a substantial or multi-step lesson, verify external claims before committing to the final dependency map. Dispatch the researcher when delegation is available; otherwise research directly or apply the fallback. Give the research task the topic, learner context, scope, and teaching decision it must support. For a short, stable explanation, record why external verification and delegation were skipped.
 
 Present the plan before the lesson. Include a short prose approach and a compact dependency map. The map may be Mermaid, another diagram syntax, ASCII, a table, or plain bullets; use the representation the host can actually render. Keep it a map, not a transcript.
 
-For a small answer, the plan can be one sentence. For a substantial lesson, pause for the learner's approval before building the whole path.
+For a small answer, the plan can be one sentence. Pause for approval when the learner requested staged teaching or unresolved scope would materially change the path. On a one-shot host, state assumptions and continue.
 
 ### Phase 3: Teach
 
@@ -93,7 +97,7 @@ Do not front-load all foundations and then stop checking. A new foundation intro
 
 Verify before asserting claims when they are high-stakes, time-sensitive, niche, numerical, or outside confident knowledge. Prefer primary sources and record the relevant date or scope. If verification is unavailable, label uncertainty and narrow the claim instead of presenting a guess as a foundation.
 
-When verification requires research, dispatch the research child rather than switching the main teaching thread into an unbounded search. Inspect the child's evidence and caveats before using its result. A source list without a clear supported claim is not a completed research result.
+When verification requires research, use a bounded research task. Inspect its evidence and caveats before using the result. A source list without a clear supported claim is not a completed research result.
 
 If research changes the planned explanation, say what changed. Do not silently preserve a convenient but incorrect dependency graph.
 

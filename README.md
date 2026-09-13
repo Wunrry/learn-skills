@@ -7,11 +7,12 @@ The repository keeps two primary skills:
 - [`teach`](./skills/teach/SKILL.md) turns a learning request into a calibrated, motivated lesson.
 - [`visualize`](./skills/visualize/SKILL.md) adds a visual only when structure, direction, or geometry is clearer as a picture.
 
-The original system was built for a specific agent runtime. This repository keeps its teaching method while replacing runtime-specific tools with capability contracts and Markdown-compatible fallbacks.
+The package is policy-level and runtime-neutral. Host loading, capability mapping, and one-shot behavior are defined in [`HOST.md`](./HOST.md).
 
 ## Repository shape
 
 ```text
+HOST.md
 skills/
 ├── teach/SKILL.md
 ├── visualize/SKILL.md
@@ -29,11 +30,11 @@ adapters/
 └── capability-adapter.md
 ```
 
-`teach` and `visualize` are the reusable policies. The files in `subskills/` describe optional roles and capabilities. A host may implement those capabilities with native tools, agents, scripts, or plain conversation.
+`teach` and `visualize` are the reusable policies. The files in `subskills/` describe optional roles and capabilities. A host may implement those capabilities with native tools, agents, scripts, or plain conversation. `CONTEXT.md` is the terminology glossary; it is not an execution specification.
 
 ## Using the skills
 
-Give the host the relevant `SKILL.md` as its active instruction. A host that supports skill discovery can expose both skills by their frontmatter names. A simpler host can load `teach` directly and follow its links when a branch requires research, quizzes, or visuals.
+Load the relevant `SKILL.md` as active instructions and resolve its relative links. Hosts with skill discovery may expose the frontmatter names; other hosts can load `teach` directly and follow links only for the branches they use. See [`HOST.md`](./HOST.md) for the minimum contract.
 
 There are no required runtime dependencies. The minimum useful implementation is a conversation that can ask questions, wait for answers, and write ordinary Markdown. Rendering, web research, delegated roles, and persistent logs are optional capabilities.
 
@@ -48,4 +49,4 @@ There are no required runtime dependencies. The minimum useful implementation is
 
 ## Provenance
 
-The method was extracted from the Pi-oriented [learn](https://github.com/amosblomqvist/learn) project. Pi extensions and Obsidian-specific behavior remain in that project; this repository is the portable instructional layer.
+The method was extracted from the [learn](https://github.com/amosblomqvist/learn) project. Runtime-specific extensions are not part of this package.

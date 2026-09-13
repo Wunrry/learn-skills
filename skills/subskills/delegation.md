@@ -41,7 +41,7 @@ For a short, stable explanation, skip delegation and state that no external veri
 
 ## Return packet
 
-Every child returns a compact, machine-readable-in-spirit packet:
+Every child returns a compact packet. The field names are stable even when the host serializes them as Markdown, JSON, or another format:
 
 ```text
 STATUS: complete | partial | blocked
@@ -52,5 +52,7 @@ EVIDENCE: citations, source identifiers, or inspection notes
 CAVEATS: scope, uncertainty, or missing requirements
 NEXT: integrate | retry | fallback
 ```
+
+`EVIDENCE` must identify what supports the result: a source locator and access date for research, or the renderer, display target, and semantic/readability checks for visuals. A missing evidence field means the result is not verified.
 
 The main agent may ask for a correction when a required field is missing. A child that cannot satisfy the brief returns `blocked` or `partial`, with the reason, instead of fabricating a successful result.

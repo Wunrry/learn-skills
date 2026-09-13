@@ -28,3 +28,16 @@ Read [`delegation.md`](./delegation.md) for the main-agent/child-agent boundary,
 - Without persistence, return clean Markdown that the host can save; never claim that it was stored.
 
 The fallback preserves the behavior's contract, not its user interface. Do not mention an unavailable tool as if it ran.
+
+## Capability decision order
+
+Classify each needed capability as `available`, `degraded`, or `unavailable` and choose the first applicable path:
+
+1. Use an available capability and record its observable result.
+2. Use a degraded capability and record its limitation and verification status.
+3. Perform the bounded task in the main agent when the required inputs and checks are available.
+4. Use the documented fallback and narrow the claim or output.
+
+Delegation is an optimization for isolation, not a prerequisite for research or visual authoring. Never wait for a child that the host cannot create.
+
+When a result is shown to the learner, preserve `Verification`, `Scope`, `Assumption`, and `Uncertainty` when applicable.

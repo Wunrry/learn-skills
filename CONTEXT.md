@@ -1,6 +1,6 @@
 # Learning Skills Context
 
-This repository defines a portable instructional layer for teaching and visual explanation. Its core vocabulary separates policies from the capabilities and roles that a host may use to carry them out.
+This repository defines a portable instructional layer for teaching and visual explanation. Its core vocabulary separates policies from the capabilities and roles that a host may use to carry them out. This file is the glossary; execution rules live in the core skills and capability contract.
 
 ## Core language
 

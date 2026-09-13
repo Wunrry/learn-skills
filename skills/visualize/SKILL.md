@@ -7,7 +7,7 @@ description: Add a correct, minimal visual when a lesson is clearer as a diagram
 
 Use a picture to expose structure that prose would make harder to see. A visual earns its place when it shows shape, direction, containment, sequence, dependency, or geometry; it is not decoration and it should not merely repeat a sentence.
 
-Use the portable capability and fallback rules in [`../subskills/capability-contract.md`](../subskills/capability-contract.md). Host-specific renderers and file embeds belong in an adapter, not in this skill.
+Use the portable capability and fallback rules in [`../subskills/capability-contract.md`](../subskills/capability-contract.md).
 
 The main agent decides what the learner needs to see. When a maker role is available, dispatch the bounded visual-authoring task so the main agent can stay with the teaching plan and learner interaction. Use [`../subskills/delegation.md`](../subskills/delegation.md) for the handoff and return packet.
 
@@ -23,7 +23,7 @@ If the answer is no, keep the explanation in prose, equations, or a small table.
 
 ## Choose a representation
 
-Select the simplest representation that preserves the relevant structure, then dispatch one suitable maker when the host supports delegated roles:
+Select the simplest representation that preserves the relevant structure. Dispatch one suitable maker per visual when the host supports delegated roles; other renderers and authoring methods are valid when they satisfy the same contract:
 
 - **Nodes and relationships:** Mermaid, graph syntax, a flowchart, a dependency map, or a plain-text graph. The delegation protocol routes this work to a relationship-diagram maker when one is available.
 - **Positions and shapes:** SVG, a plotted image, coordinate geometry, a number line, or another precise drawing. The delegation protocol routes this work to a spatial-diagram maker when one is available.
@@ -55,7 +55,7 @@ The preferred author is a delegated role. The main agent supplies a bounded brie
 5. Check presentation: nothing overlaps, clips, crowds, or becomes unreadable at the intended size.
 6. Simplify or edit, then render again until the result is correct and clean.
 
-Only call a visual verified when this loop has happened and the return packet records the inspection. If it cannot be rendered or inspected, label it as unverified and use a conservative source representation instead.
+Only call a visual verified when this loop has happened and the return packet records the inspection. If it cannot be rendered or inspected, label it `Verification: unverified` and use a conservative source representation instead.
 
 ## Embed the result
 
@@ -66,6 +66,8 @@ Prefer portable Markdown:
 ```
 
 Use a host-specific embed only in an adapter layer. Keep the lesson itself independent of vault names, special link syntax, or a particular save directory. Introduce the visual with one sentence and let it carry the relationship; do not narrate every label redundantly.
+
+For every visual, preserve `Verification`, intended display size, and any geometry or accessibility limitation in the surrounding Markdown or return packet.
 
 ## Completion criteria
 
