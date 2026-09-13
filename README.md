@@ -36,6 +36,23 @@ adapters/
 
 Load the relevant `SKILL.md` as active instructions and resolve its relative links. Hosts with skill discovery may expose the frontmatter names; other hosts can load `teach` directly and follow links only for the branches they use. See [`HOST.md`](./HOST.md) for the minimum contract.
 
+### Manual installation
+
+Clone the repository, then copy the contents of its `skills/` directory into the host's skill directory. This preserves the expected `skills/<name>/SKILL.md` layout and keeps the relative links to `subskills/` working.
+
+```bash
+git clone https://github.com/Wunrry/learn-skills.git
+mkdir -p your-project/.agents/skills
+cp -R learn-skills/skills/. your-project/.agents/skills/
+```
+
+For Claude Code:
+
+```bash
+mkdir -p your-project/.claude/skills
+cp -R learn-skills/skills/. your-project/.claude/skills/
+```
+
 There are no required runtime dependencies. The minimum useful implementation is a conversation that can ask questions, wait for answers, and write ordinary Markdown. Rendering, web research, delegated roles, and persistent logs are optional capabilities.
 
 ## Design rules
